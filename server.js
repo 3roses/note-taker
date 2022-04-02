@@ -35,7 +35,7 @@ app.get('/api/notes', (req, res) =>
 );
 
 
-app.post('/api/notes', (req, res) =>{
+app.post('/api/notes', (req, res) => {
     console.log(req.body);
     
     const noteNew = {
@@ -54,10 +54,20 @@ app.post('/api/notes', (req, res) =>{
     console.log(parsedDB);
 
     fs.writeFileSync('develop/db/db.json', JSON.stringify(parsedDB));
-
+    return res.json(noteNew);
 });
 
+app.delete('/api/notes:id', function(req, res) {
+    
+    let db = fs.readFileSync('develop/db/db.json');
+    let parsedDB = JSON.parse(db);
 
+    parsedDB.filter(note => note.id != req.params.id)
+
+    fs.writeFileSync('./develop/db/db.json', JSON.stringify(parsedDB));
+
+    res.send(req.params.id)
+})
 
 
 
