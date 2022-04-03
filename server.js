@@ -9,7 +9,7 @@ const app = express();
 
 
 // Allow for static files to be accessed
-app.use(express.static('develop/public'));
+app.use(express.static('Develop/public'));
 
 
 // Middleware for parsing JSON and urlencoded form data
@@ -20,18 +20,18 @@ app.use(express.json());
 
 // GET Route for homepage
 app.get('/', (req, res) =>
-  res.sendFile(path.join(__dirname, '/develop/public/index.html'))
+  res.sendFile(path.join(__dirname, '/Develop/public/index.html'))
 );
 
 
 // GET Route for notes page
 app.get('/notes', (req, res) =>
-  res.sendFile(path.join(__dirname, 'develop/public/notes.html'))
+  res.sendFile(path.join(__dirname, 'Develop/public/notes.html'))
 );
 
 
 app.get('/api/notes', (req, res) =>
-  res.sendFile(path.join(__dirname, 'develop/db/db.json'))
+  res.sendFile(path.join(__dirname, 'Develop/db/db.json'))
 );
 
 
@@ -46,25 +46,25 @@ app.post('/api/notes', (req, res) => {
 
     console.log(noteNew);
 
-    let db = fs.readFileSync('develop/db/db.json')
+    let db = fs.readFileSync('Develop/db/db.json')
     let parsedDB = JSON.parse(db);
     console.log(parsedDB);
 
     parsedDB.push(noteNew);
     console.log(parsedDB);
 
-    fs.writeFileSync('develop/db/db.json', JSON.stringify(parsedDB));
+    fs.writeFileSync('Develop/db/db.json', JSON.stringify(parsedDB));
     return res.json(noteNew);
 });
 
 app.delete('/api/notes:id', function(req, res) {
     
-    let db = fs.readFileSync('develop/db/db.json');
+    let db = fs.readFileSync('Develop/db/db.json');
     let parsedDB = JSON.parse(db);
 
     parsedDB.filter(note => note.id != req.params.id)
 
-    fs.writeFileSync('./develop/db/db.json', JSON.stringify(parsedDB));
+    fs.writeFileSync('Develop/db/db.json', JSON.stringify(parsedDB));
 
     res.send(req.params.id)
 })
