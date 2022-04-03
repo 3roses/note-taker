@@ -62,12 +62,12 @@ app.delete('/api/notes:id', function(req, res) {
     let db = fs.readFileSync('Develop/db/db.json');
     let parsedDB = JSON.parse(db);
 
-    parsedDB.filter(note => note.id != req.params.id)
+    parsedDB.filter(note => note.id != req.params.id);
 
     fs.writeFileSync('Develop/db/db.json', JSON.stringify(parsedDB));
 
-    res.send(req.params.id)
-})
+    res.send(req.params.id);
+});
 
 
 
