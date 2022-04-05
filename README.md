@@ -4,7 +4,7 @@
 
 This is a note taking application. The user is able to type in information in two separate fields, one for the title, and the other for the content of the note. Once the user clicks the save button, the note is displayed on the left hand side of the screen alongside all other saved notes. Each note is given a unique ID.
 
--------------------------------
+------------------------------
 
 ## Table of Contents
 
